@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrgcode/screens/Genererqrcode.dart';
 
 class Homeg extends StatefulWidget {
   const Homeg({super.key});
@@ -72,7 +73,12 @@ class _HomegState extends State<Homeg> {
           ),
           SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Genererqrcode()),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               fixedSize: Size(200, 50),
