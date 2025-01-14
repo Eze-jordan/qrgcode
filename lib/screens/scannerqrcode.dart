@@ -45,7 +45,7 @@ class _ScannerqrcodeState extends State<Scannerqrcode> {
                 ),
                 const SizedBox(width: 70),
                 const Text(
-                  "SCAN QR code",
+                  "SCAN QR.CODE",
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
