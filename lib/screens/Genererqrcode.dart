@@ -72,116 +72,125 @@ class _GenererqrcodeState extends State<Genererqrcode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Iconsax.arrow_left_1,
-                        color: Colors.white,
-                        size: 35,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Center(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Iconsax.arrow_left_1,
+                          color: Colors.white,
+                          size: 35,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 120),
-                    Column(children: [
-                      Container(
-                        height: 50,
-                        width: 90,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/img/qrlogo.png'),
-                            fit: BoxFit.contain,
+                      const SizedBox(width: 120),
+                      Column(children: [
+                        Container(
+                          height: 50,
+                          width: 90,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/qrlogo.png'),
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        'G code',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      )
-                    ]),
-                  ],
+                        Text(
+                          'G code',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )
+                      ]),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const Text(
-                    "Un QR code (Quick Response Code) est un type de code-barres en 2D qui permet de stocker divers types d'informations, comme des liens URL, des contacts, des messages ou encore des informations de paiement. Dans cette application, vous pouvez générer un QR code personnalisé à partir du texte ou du lien que vous entrez.",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                // Champ de texte pour entrer un lien ou du texte
-                TextField(
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                    labelText: 'Entrez le lien ou le texte',
-                    hintText: 'Entrez votre lien ou texte ici',
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    fillColor: Color(0x41FFFFFF),
-                  ),
-                  onChanged: (value) {
-                    setState(() {
-                      _qrData = value; // Mise à jour des données du QR code
-                    });
-                  },
-                ),
-                const SizedBox(height: 20),
-                // Affichage du QR code
-                if (_qrData.isNotEmpty)
-                  QrImageView(
-                    data: _qrData, // Données à encoder
-                    size: 300.0, // Taille du QR code
-                    backgroundColor: Colors.white, // Couleur de fond
-                    foregroundColor: Colors.black, // Couleur du QR code
-                  ),
-                const SizedBox(height: 20),
-                SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Scannerqrcode()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    fixedSize: Size(200, 50),
-                  ),
-                  child: Text('Scanner QR.Code',
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: const Text(
+                      "Un QR code (Quick Response Code) est un type de code-barres en 2D qui permet de stocker divers types d'informations, comme des liens URL, des contacts, des messages ou encore des informations de paiement. Dans cette application, vous pouvez générer un QR code personnalisé à partir du texte ou du lien que vous entrez.",
                       style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      )),
-                ),
-                // Bouton pour télécharger le QR Code
-                ElevatedButton(
-                  onPressed: _downloadQRCode,
-                  child: const Text("Télécharger le QR Code"),
-                ),
-              ],
-            ),
-          ],
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  // Champ de texte pour entrer un lien ou du texte
+                  TextField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      labelText: 'Entrez le lien ou le texte',
+                      hintText: 'Entrez votre lien ou texte ici',
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Color(0x41FFFFFF),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _qrData = value; // Mise à jour des données du QR code
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  // Affichage du QR code
+                  if (_qrData.isNotEmpty)
+                    QrImageView(
+                      data: _qrData, // Données à encoder
+                      size: 300.0, // Taille du QR code
+                      backgroundColor: Colors.white, // Couleur de fond
+                      foregroundColor: Colors.black, // Couleur du QR code
+                    ),
+                  const SizedBox(height: 20),
+                  SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Scannerqrcode()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(200, 50),
+                    ),
+                    child: Text('Scanner QR.Code',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
+                  ),
+                  const SizedBox(height: 20),
+                  // Bouton pour télécharger le QR Code
+                  ElevatedButton(
+                    onPressed: _downloadQRCode,
+                    child: const Text("Télécharger le QR Code",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
