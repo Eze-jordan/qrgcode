@@ -6,6 +6,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:qrgcode/screens/scannerqrcode.dart';
 
 class Genererqrcode extends StatefulWidget {
   const Genererqrcode({super.key});
@@ -153,6 +154,26 @@ class _GenererqrcodeState extends State<Genererqrcode> {
                     foregroundColor: Colors.black, // Couleur du QR code
                   ),
                 const SizedBox(height: 20),
+                SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Scannerqrcode()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    fixedSize: Size(200, 50),
+                  ),
+                  child: Text('Scanner QR.Code',
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      )),
+                ),
                 // Bouton pour télécharger le QR Code
                 ElevatedButton(
                   onPressed: _downloadQRCode,
